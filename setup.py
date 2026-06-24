@@ -3,7 +3,6 @@ from __future__ import annotations
 import argparse
 import re
 import subprocess
-import sys
 from pathlib import Path
 
 PROJECT_ROOT = Path(__file__).resolve().parent
@@ -37,24 +36,6 @@ def normalize_slug(value: str) -> str:
 def prompt(label: str, default: str) -> str:
     response = input(f"{label} [{default}]: ").strip()
     return response or default
-
-
-def prompt_yes_no(label: str, default: bool = True) -> bool:
-    suffix = "Y/n" if default else "y/N"
-
-    while True:
-        response = input(f"{label} [{suffix}]: ").strip().lower()
-
-        if not response:
-            return default
-
-        if response in {"y", "yes"}:
-            return True
-
-        if response in {"n", "no"}:
-            return False
-
-        print("Enter yes or no.")
 
 
 def collect_context() -> dict[str, str | bool]:

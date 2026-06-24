@@ -1,35 +1,48 @@
-# Skills
+# Project Map
 
-Use this file as the project-level operating guide for AI coding agents.
+This template is organized around a small full-stack application skeleton for
+AI-assisted coding projects.
 
-## Core Practice
+## Root
 
-- Make small, coherent changes.
-- Keep commits focused to one file when practical.
-- Prefer existing modules before adding new abstractions.
-- Preserve the public user flow when changing backend internals.
-- Use `uv run python build.py` as the repeatable verification route.
-
-## Frontend
-
-- Keep the UI high-contrast dark gruvbox.
-- Use `src/frontend/style.css` for human-editable styling.
-- Compile TypeScript ahead of time with `npm run build`.
-- Avoid animations, transitions, noisy borders, nested cards, and unnecessary
-  labels.
-- Keep UI dense, stable, responsive, and free of implementation details.
+- `main.py`: CLI entrypoint that starts Uvicorn.
+- `build.py`: repeatable build and test entrypoint.
+- `database.db`: local SQLite database file.
+- `pyproject.toml`: Python package metadata and dependencies.
+- `uv.lock`: resolved Python dependency graph.
+- `package.json`: frontend scripts and development dependencies.
+- `package-lock.json`: resolved frontend dependency graph.
+- `tsconfig.json`: TypeScript compiler configuration.
+- `eslint.config.js`: frontend TypeScript lint configuration.
+- `alembic.ini`: Alembic configuration.
+- `README.md`: setup, runtime, and workflow documentation.
+- `AGENTS.md`: repository-specific agent directives.
+- `SKILLS.md`: this project structure map.
 
 ## Backend
 
-- Run the app with `python3 main.py --port 8000`.
-- Keep `/health` cheap, public, and stable.
-- Use `src.backend.database` for database URL, engine, and metadata.
-- Use Alembic for schema changes rather than ad hoc migrations.
-- Keep blocking work out of user-facing request paths.
+- `src/backend/app.py`: FastAPI application factory, `/health` endpoint, and
+  frontend asset serving.
+- `src/backend/database.py`: SQLite path, SQLAlchemy URL, declarative metadata,
+  engine creation, and database initialization.
 
-## Database
+## Frontend
 
-- Store local development data in `database.db`.
-- Add SQLAlchemy models against `Base` from `src.backend.database`.
-- Generate migrations into `migrations/versions`.
-- Review generated migrations before applying them.
+- `src/frontend/index.html`: browser document shell.
+- `src/frontend/app.ts`: TypeScript browser entrypoint.
+- `src/frontend/style.css`: human-editable stylesheet.
+
+## Database Migrations
+
+- `migrations/env.py`: Alembic migration runtime wired to backend metadata.
+- `migrations/versions/`: generated schema revisions.
+
+## Tests
+
+- `tests/test_health.py`: formal backend health endpoint test.
+
+## Generated Output
+
+- `dist/frontend/`: compiled frontend output produced by `npm run build`.
+- `node_modules/`: installed frontend dependencies.
+- `.venv/`: local Python environment managed by `uv`.

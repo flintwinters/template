@@ -1,7 +1,6 @@
 # {{ project_title }} Project Map
 
-This project is organized around a small full-stack application skeleton for
-AI-assisted coding work.
+This project is organized around a small uvicorn typescript app skeleton.
 
 ## Root
 

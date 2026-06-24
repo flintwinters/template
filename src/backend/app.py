@@ -17,7 +17,7 @@ INDEX_HTML = FRONTEND_DIST / "index.html"
 def create_app() -> FastAPI:
     initialize_database()
 
-    app = FastAPI(title="AI Coding Template")
+    app = FastAPI(title="{{ project_title }}")
 
     if STATIC_DIST.exists():
         app.mount("/static", StaticFiles(directory=STATIC_DIST), name="static")

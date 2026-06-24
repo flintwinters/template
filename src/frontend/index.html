@@ -3,14 +3,14 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>AI Coding Template</title>
+    <title>{{ project_title }}</title>
     <link rel="stylesheet" href="/static/style.css" />
   </head>
   <body>
     <main class="shell">
       <section class="panel" aria-labelledby="template-title">
-        <p class="eyebrow">Project Template</p>
-        <h1 id="template-title">AI coding workspace</h1>
+        <p class="eyebrow">{{ project_slug }}</p>
+        <h1 id="template-title">{{ project_title }}</h1>
         <p class="summary">
           FastAPI, SQLite, Alembic, TypeScript, and a compact gruvbox interface
           arranged for incremental production work.

@@ -7,24 +7,24 @@
     <link rel="stylesheet" href="/static/style.css" />
   </head>
   <body>
-    <main class="shell">
-      <section class="panel" aria-labelledby="template-title">
-        <p class="eyebrow">{{ project_slug }}</p>
+    <main class="app-shell">
+      <section class="panel stack" aria-labelledby="template-title">
+        <p class="muted">{{ project_slug }}</p>
         <h1 id="template-title">{{ project_title }}</h1>
-        <p class="summary">
+        <p>
           FastAPI, SQLite, Alembic, TypeScript, and a compact gruvbox interface
           arranged for incremental production work.
         </p>
-        <dl class="status-grid">
-          <div>
+        <dl class="grid">
+          <div class="surface">
             <dt>Backend</dt>
             <dd id="backend-status">Checking</dd>
           </div>
-          <div>
+          <div class="surface">
             <dt>Frontend</dt>
             <dd>Compiled TypeScript</dd>
           </div>
-          <div>
+          <div class="surface">
             <dt>Database</dt>
             <dd>SQLite</dd>
           </div>

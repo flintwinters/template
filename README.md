@@ -15,8 +15,7 @@ python3 setup.py
 ```
 
 The script renders Jinja-style project placeholders, runs `uv venv`, runs
-`uv sync`, optionally installs frontend dependencies with `npm install`, and
-then removes itself.
+`uv sync`, and then removes itself.
 
 ## Commands
 
@@ -26,7 +25,7 @@ Install Python dependencies:
 uv sync
 ```
 
-Install frontend dependencies:
+Install frontend dependencies only when editing or compiling TypeScript:
 
 ```sh
 npm install

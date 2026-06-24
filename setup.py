@@ -121,6 +121,12 @@ def initialize_git_repository(project_title: str) -> None:
     print("Initialized fresh git repository with no remotes.")
 
 
+def commit_rendered_project() -> None:
+    run(["git", "add", "--all"])
+    run(["git", "commit", "-m", "Apply project template"])
+    print("Committed rendered project files.")
+
+
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description="Configure this cloned template.")
     parser.add_argument(
@@ -151,6 +157,7 @@ def main() -> None:
 
     remove_setup_script()
     initialize_git_repository(str(context["project_title"]))
+    commit_rendered_project()
 
 
 if __name__ == "__main__":

@@ -1,8 +1,22 @@
-# AI Coding Project Template
+# {{ project_title }}
 
-This repository is a compact production template for AI-assisted application
-work. It combines FastAPI, Uvicorn reload, SQLite, SQLAlchemy, Alembic,
-TypeScript, ESLint, and a high-contrast dark gruvbox frontend.
+{{ project_description }}
+
+This project was generated from a compact production template for AI-assisted
+application work. It combines FastAPI, Uvicorn reload, SQLite, SQLAlchemy,
+Alembic, TypeScript, ESLint, and a high-contrast dark gruvbox frontend.
+
+## First Setup
+
+Run the interactive setup script once after cloning the template:
+
+```sh
+python3 setup.py
+```
+
+The script renders Jinja-style project placeholders, runs `uv venv`, runs
+`uv sync`, optionally installs frontend dependencies with `npm install`, and
+then removes itself.
 
 ## Commands
 

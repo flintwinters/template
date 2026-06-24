@@ -63,19 +63,15 @@ def collect_context() -> dict[str, str | bool]:
 
     project_title = prompt("Project title", default_title)
     project_slug = normalize_slug(prompt("Python project slug", default_slug))
-    npm_package_name = normalize_slug(prompt("NPM package name", project_slug))
     description = prompt(
         "Project description",
         f"{project_title} application built from the AI coding template.",
     )
-    install_frontend = prompt_yes_no("Install frontend dependencies with npm install")
 
     return {
         "project_title": project_title,
         "project_slug": project_slug,
-        "npm_package_name": npm_package_name,
         "project_description": description,
-        "install_frontend": install_frontend,
     }
 
 
@@ -154,7 +150,6 @@ def main() -> None:
     print("\nConfiguration")
     print(f"Project title: {context['project_title']}")
     print(f"Python project slug: {context['project_slug']}")
-    print(f"NPM package name: {context['npm_package_name']}")
     print(f"Description: {context['project_description']}")
 
     if not prompt_yes_no("Apply this setup"):
@@ -169,9 +164,6 @@ def main() -> None:
 
     run(["uv", "venv"])
     run(["uv", "sync"])
-
-    if context["install_frontend"]:
-        run(["npm", "install"])
 
     remove_setup_script()
 

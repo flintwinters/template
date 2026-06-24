@@ -1,11 +1,12 @@
-# Project Map
+# {{ project_title }} Project Map
 
-This template is organized around a small full-stack application skeleton for
-AI-assisted coding projects.
+This project is organized around a small full-stack application skeleton for
+AI-assisted coding work.
 
 ## Root
 
 - `main.py`: CLI entrypoint that starts Uvicorn.
+- `setup.py`: one-time interactive template renderer removed after setup.
 - `build.py`: repeatable build and test entrypoint.
 - `database.db`: local SQLite database file.
 - `pyproject.toml`: Python package metadata and dependencies.

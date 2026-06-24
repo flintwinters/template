@@ -2,9 +2,8 @@
 
 ## Project Goal
 
-{{ project_title }} is an AI-assisted coding project generated from this
-template. It should stay small, explicit, production-oriented, and easy for both
-humans and agents to audit.
+{{ project_title }} is a uvicorn typescript app. It should stay small, explicit,
+production-oriented, and easy for both humans and agents to audit.
 
 ## Working Rules
 

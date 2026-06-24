@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import argparse
 import re
+import shutil
 import subprocess
 from pathlib import Path
 
@@ -109,6 +110,17 @@ def remove_setup_script() -> None:
     print("Removed setup.py")
 
 
+def initialize_git_repository(project_title: str) -> None:
+    git_directory = PROJECT_ROOT / ".git"
+
+    if git_directory.exists():
+        shutil.rmtree(git_directory)
+
+    run(["git", "init"])
+    (git_directory / "description").write_text(f"{project_title}\n")
+    print("Initialized fresh git repository with no remotes.")
+
+
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description="Configure this cloned template.")
     parser.add_argument(
@@ -138,6 +150,7 @@ def main() -> None:
     run(["uv", "sync"])
 
     remove_setup_script()
+    initialize_git_repository(str(context["project_title"]))
 
 
 if __name__ == "__main__":

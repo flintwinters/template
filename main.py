@@ -17,7 +17,7 @@ RELOAD_DIRECTORIES = (
 
 
 def parse_args() -> argparse.Namespace:
-    parser = argparse.ArgumentParser(description="Run the AI coding template server.")
+    parser = argparse.ArgumentParser(description="Run the {{ project_title }} server.")
     parser.add_argument(
         "--port",
         default=8000,

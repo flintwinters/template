@@ -63,15 +63,10 @@ def collect_context() -> dict[str, str | bool]:
 
     project_title = prompt("Project title", default_title)
     project_slug = normalize_slug(project_title)
-    description = prompt(
-        "Project description",
-        f"{project_title} application built from the AI coding template.",
-    )
 
     return {
         "project_title": project_title,
         "project_slug": project_slug,
-        "project_description": description,
     }
 
 
@@ -150,10 +145,6 @@ def main() -> None:
     print("\nConfiguration")
     print(f"Project title: {context['project_title']}")
     print(f"Python project slug: {context['project_slug']}")
-    print(f"Description: {context['project_description']}")
-
-    if not prompt_yes_no("Apply this setup"):
-        raise SystemExit("Setup cancelled.")
 
     rendered_paths = render_project(context)
     print(f"Rendered {len(rendered_paths)} template files.")

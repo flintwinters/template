@@ -7,10 +7,11 @@ import uvicorn
 
 PROJECT_ROOT = Path(__file__).resolve().parent
 RELOAD_DIRECTORIES = (
-    PROJECT_ROOT,
     PROJECT_ROOT / "src",
     PROJECT_ROOT / "src" / "backend",
     PROJECT_ROOT / "src" / "frontend",
+    PROJECT_ROOT / "migrations",
+    PROJECT_ROOT / "scripts",
     PROJECT_ROOT / "tests",
 )
 

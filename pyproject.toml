@@ -1,7 +1,7 @@
 [project]
-name = "template"
+name = "{{ project_slug }}"
 version = "0.1.0"
-description = "Project template for AI-assisted coding with FastAPI, TypeScript, SQLite, and Alembic."
+description = "{{ project_description }}"
 readme = "README.md"
 requires-python = ">=3.13"
 dependencies = [

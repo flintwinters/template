@@ -1,10 +1,9 @@
 # {{ project_title }}
 
-{{ project_description }}
+uvicorn typescript app
 
-This project was generated from a compact production template for AI-assisted
-application work. It combines FastAPI, Uvicorn reload, SQLite, SQLAlchemy,
-Alembic, TypeScript, ESLint, and a high-contrast dark gruvbox frontend.
+This project combines FastAPI, Uvicorn reload, SQLite, SQLAlchemy, Alembic,
+TypeScript, ESLint, and a high-contrast dark gruvbox frontend.
 
 ## First Setup
 
@@ -14,8 +13,8 @@ Run the interactive setup script once after cloning the template:
 python3 setup.py
 ```
 
-The script renders Jinja-style project placeholders, runs `uv venv`, runs
-`uv sync`, and then removes itself.
+The script renders project placeholders, runs `uv venv`, runs `uv sync`, and
+then removes itself.
 
 ## Commands
 

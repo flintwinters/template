@@ -493,7 +493,7 @@ wheels = [
 ]
 
 [[package]]
-name = "template"
+name = "{{ project_slug }}"
 version = "0.1.0"
 source = { virtual = "." }
 dependencies = [

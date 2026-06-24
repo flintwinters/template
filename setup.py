@@ -62,7 +62,7 @@ def collect_context() -> dict[str, str | bool]:
     default_title = title_from_slug(default_slug)
 
     project_title = prompt("Project title", default_title)
-    project_slug = normalize_slug(prompt("Python project slug", default_slug))
+    project_slug = normalize_slug(project_title)
     description = prompt(
         "Project description",
         f"{project_title} application built from the AI coding template.",

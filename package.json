@@ -1,5 +1,5 @@
 {
-  "name": "ai-coding-template",
+  "name": "{{ npm_package_name }}",
   "version": "0.1.0",
   "private": true,
   "type": "module",

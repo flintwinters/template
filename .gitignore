@@ -4,3 +4,8 @@ node_modules/
 dist/
 .venv/
 .pytest_cache/
+.env
+.env.*
+*.db
+*.sqlite
+*.sqlite3

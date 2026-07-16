@@ -27,5 +27,7 @@ production-oriented, and easy for both humans and agents to audit.
 
 - `python3 main.py --port 8000` starts Uvicorn with reload enabled.
 - `/health` is the public operational endpoint.
+- `/agent/tools` exposes the OpenAPI operations as an agent-consumable tool
+  directory with materialized example input and output shapes.
 - TypeScript must be compiled ahead of time before serving production assets.
 - Do not expose database IDs or implementation details in user-facing UI.

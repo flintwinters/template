@@ -15,6 +15,10 @@ const assets = [
   {
     from: resolve(frontendSource, "style.css"),
     to: resolve(staticOutput, "style.css")
+  },
+  {
+    from: resolve(frontendSource, "favicon.png"),
+    to: resolve(frontendOutput, "favicon.png")
   }
 ];
 

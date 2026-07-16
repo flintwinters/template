@@ -6,6 +6,7 @@ from fastapi import FastAPI
 from fastapi.responses import FileResponse
 from fastapi.staticfiles import StaticFiles
 
+from src.backend.agent_tools_index import ToolIndexResponse, build_tool_index
 from src.backend.database import initialize_database
 
 PROJECT_ROOT = Path(__file__).resolve().parents[2]
@@ -25,6 +26,10 @@ def create_app() -> FastAPI:
     @app.get("/health")
     def health() -> dict[str, str]:
         return {"status": "ok"}
+
+    @app.get("/agent/tools", response_model=ToolIndexResponse)
+    def tools() -> ToolIndexResponse:
+        return build_tool_index(app.openapi())
 
     @app.get("/{path:path}", include_in_schema=False)
     def frontend(path: str) -> FileResponse:

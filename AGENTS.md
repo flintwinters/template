@@ -27,5 +27,16 @@ production-oriented, and easy for both humans and agents to audit.
 
 - `python3 main.py --port 8000` starts Uvicorn with reload enabled.
 - `/health` is the public operational endpoint.
+- `src/frontend/favicon.png` is the single replaceable favicon source served at
+  both `/favicon.png` and `/favicon.ico`.
 - TypeScript must be compiled ahead of time before serving production assets.
 - Do not expose database IDs or implementation details in user-facing UI.
+
+## Setup State
+
+- The initial `setup.py` pass applies only `{{ project_title }}` and preserves
+  every other template slot for later routines.
+- Setup renames `microservice.service` to `{{ project_title }}.service` before
+  rendering its description.
+- `{{ microservice_dir }}` and `{{ service_port }}` remain deferred service
+  configuration inputs after initial setup.

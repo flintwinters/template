@@ -12,7 +12,12 @@ from src.backend.database import initialize_database
 PROJECT_ROOT = Path(__file__).resolve().parents[2]
 FRONTEND_DIST = PROJECT_ROOT / "dist" / "frontend"
 STATIC_DIST = FRONTEND_DIST / "static"
-INDEX_HTML = FRONTEND_DIST / "index.html"
+FRONTEND_SOURCE = PROJECT_ROOT / "src" / "frontend"
+
+
+def frontend_asset(name: str) -> Path:
+    built_asset = FRONTEND_DIST / name
+    return built_asset if built_asset.exists() else FRONTEND_SOURCE / name
 
 
 def create_app() -> FastAPI:
@@ -31,13 +36,14 @@ def create_app() -> FastAPI:
     def tools() -> ToolIndexResponse:
         return build_tool_index(app.openapi())
 
+    @app.get("/favicon.ico", include_in_schema=False)
+    @app.get("/favicon.png", include_in_schema=False)
+    def favicon() -> FileResponse:
+        return FileResponse(frontend_asset("favicon.png"), media_type="image/png")
+
     @app.get("/{path:path}", include_in_schema=False)
     def frontend(path: str) -> FileResponse:
-        if INDEX_HTML.exists():
-            return FileResponse(INDEX_HTML)
-
-        fallback = PROJECT_ROOT / "src" / "frontend" / "index.html"
-        return FileResponse(fallback)
+        return FileResponse(frontend_asset("index.html"))
 
     return app
 

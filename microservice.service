@@ -1,0 +1,10 @@
+[Unit]
+Description={{ project_title }}
+
+[Service]
+WorkingDirectory={{ microservice_dir }}
+ExecStart=uv run main.py --port {{ service_port }}
+Restart=on-failure
+
+[Install]
+WantedBy=default.target

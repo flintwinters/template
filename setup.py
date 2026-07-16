@@ -39,16 +39,14 @@ def prompt(label: str, default: str) -> str:
     return response or default
 
 
-def collect_context() -> dict[str, str | bool]:
+def collect_context() -> dict[str, str]:
     default_slug = normalize_slug(PROJECT_ROOT.name)
     default_title = title_from_slug(default_slug)
 
     project_title = prompt("Project title", default_title)
-    project_slug = normalize_slug(project_title)
 
     return {
         "project_title": project_title,
-        "project_slug": project_slug,
     }
 
 
@@ -61,7 +59,7 @@ def should_skip(path: Path) -> bool:
     return path.suffix in SKIPPED_SUFFIXES or path.name == Path(__file__).name
 
 
-def render_text(path: Path, context: dict[str, str | bool]) -> bool:
+def render_text(path: Path, context: dict[str, str]) -> bool:
     try:
         original = path.read_text()
     except UnicodeDecodeError:
@@ -73,10 +71,7 @@ def render_text(path: Path, context: dict[str, str | bool]) -> bool:
     def replace(match: re.Match[str]) -> str:
         key = match.group(1)
 
-        if key not in context:
-            raise KeyError(f"Unknown template variable '{key}' in {path}")
-
-        return str(context[key])
+        return context.get(key, match.group(0))
 
     rendered = PLACEHOLDER_PATTERN.sub(replace, original)
 
@@ -87,7 +82,7 @@ def render_text(path: Path, context: dict[str, str | bool]) -> bool:
     return True
 
 
-def render_project(context: dict[str, str | bool]) -> list[Path]:
+def render_project(context: dict[str, str]) -> list[Path]:
     rendered_paths: list[Path] = []
 
     for path in sorted(PROJECT_ROOT.rglob("*")):
@@ -98,6 +93,20 @@ def render_project(context: dict[str, str | bool]) -> list[Path]:
             rendered_paths.append(path.relative_to(PROJECT_ROOT))
 
     return rendered_paths
+
+
+def rename_service_file(project_title: str) -> Path:
+    source = PROJECT_ROOT / "microservice.service"
+    destination = source.with_name(f"{project_title}.service")
+
+    if source == destination:
+        return source
+
+    if destination.exists():
+        raise FileExistsError(f"Service file already exists: {destination.name}")
+
+    source.rename(destination)
+    return destination
 
 
 def run(command: list[str]) -> None:
@@ -143,8 +152,9 @@ def main() -> None:
 
     print("\nConfiguration")
     print(f"Project title: {context['project_title']}")
-    print(f"Python project slug: {context['project_slug']}")
 
+    service_file = rename_service_file(context["project_title"])
+    print(f"Renamed service file to {service_file.name}")
     rendered_paths = render_project(context)
     print(f"Rendered {len(rendered_paths)} template files.")
 

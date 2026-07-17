@@ -26,6 +26,9 @@ production-oriented, and easy for both humans and agents to audit.
 ## Runtime Rules
 
 - `python3 main.py --port 8000` starts Uvicorn with reload enabled.
+- Development reloads use watchfiles polling by default to avoid dependence on
+  shared host inotify limits; set `WATCHFILES_FORCE_POLLING=false` to opt into
+  native filesystem notifications.
 - `/health` is the public operational endpoint.
 - `src/frontend/favicon.png` is the single replaceable favicon source served at
   both `/favicon.png` and `/favicon.ico`.

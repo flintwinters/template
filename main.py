@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import argparse
+import os
 from pathlib import Path
 
 import uvicorn
@@ -33,6 +34,7 @@ def existing_reload_directories() -> list[str]:
 
 def main() -> None:
     args = parse_args()
+    os.environ.setdefault("WATCHFILES_FORCE_POLLING", "true")
 
     uvicorn.run(
         "src.backend.app:app",
